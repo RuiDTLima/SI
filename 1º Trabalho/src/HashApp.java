@@ -1,35 +1,39 @@
-import java.io.FileInputStream;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class HashApp {
     public static void main(String[] args) {
-        byte[] digest = getNBitsFromHash(args[0], Integer.parseInt(args[1]));
-
+        byte[] file = loadFile(args[0]);
+        byte[] digest = getNBitsFromHash(file, Integer.parseInt(args[1]));
         System.out.print("SHA1(" + args[0] + ") = ");
-        for (byte aDigest : digest) {
+        for (byte aDigest : digest)
             System.out.print(String.format("%1$02x", aDigest));
-        }
     }
 
-    public static byte[] getNBitsFromHash(String arg, int i) {
+    public static byte[] getNBitsFromHash(byte[] file, int n) {
+        return trim(hashing(file), n);
+    }
+
+    public static byte[] hashing(byte[] file) {
+        MessageDigest sha = null;
         try {
-            return trim(hashing(arg), i);
-        } catch (IOException | NoSuchAlgorithmException e) {
+            sha = MessageDigest.getInstance("SHA-1");
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        return null;
-    }
+        int iterations = file.length / 1024;
+        int rest = file.length % 1024;
 
-    public static byte[] hashing(String fileName) throws IOException, NoSuchAlgorithmException {
-        FileInputStream fi = new FileInputStream(fileName);
-        MessageDigest sha = MessageDigest.getInstance("SHA-1");
-        int nread = 0;
-        byte buf[] = new byte[1024];
-        while ((nread = fi.read(buf)) != -1) {
-            sha.update(buf, 0, nread);
+        for (int i = 0; i < iterations; i++) {
+            sha.update(file, 1024 * i, 1024);
         }
+        if (rest != 0)
+            sha.update(file, 1024 * iterations, rest);
+
         return sha.digest();
     }
 
@@ -45,5 +49,15 @@ public class HashApp {
             ret[length - 1] = (byte) (ret[length - 1] & mask);
         }
         return ret;
+    }
+
+    public static byte[] loadFile(String fileName) {
+        try {
+            File f = new File(fileName);
+            return Files.readAllBytes(Paths.get(fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
