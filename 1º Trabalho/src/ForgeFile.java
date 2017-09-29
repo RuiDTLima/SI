@@ -1,4 +1,3 @@
-import java.io.*;
 import java.util.Random;
 
 public class ForgeFile {
@@ -7,52 +6,38 @@ public class ForgeFile {
     private static final Random RND = new Random();
 
     public static void main(String[] args){
-        String file1 = args[0], file2 = args[1], newFile = "App.java";
         int size = Integer.parseInt(args[2]), count = 0;
 
-        byte[] hashFile2 = HashApp.getNBitsFromHash(file2, size); // GoodApp
-        byte[] hashFile1 = HashApp.getNBitsFromHash(file1, size); // BadApp
+        byte[] file = HashApp.loadFile(args[0]);
+
+        byte[] hashFile1 = HashApp.getNBitsFromHash(file, size); // BadApp
+        byte[] hashFile2 = HashApp.getNBitsFromHash(HashApp.loadFile(args[1]), size); // GoodApp
 
         if (compare(hashFile1, hashFile2))
             System.out.println(1);
 
         else {
             for (int i = 0; i < 5; i++) {
-                copyFile(file1, newFile);
+                file = HashApp.loadFile(args[0]);
 
                 while (!compare(hashFile1, hashFile2)) {
                     count++;
-                    alterFile(newFile);
-                    hashFile1 = HashApp.getNBitsFromHash(newFile, size);
+                    file = alterFile(file);
+                    hashFile1 = HashApp.getNBitsFromHash(file, size);
                 }
-                hashFile1 = HashApp.getNBitsFromHash(file1, size);
+                hashFile1 = HashApp.getNBitsFromHash(file, size);
             }
 
             System.out.println(count / 5);
         }
     }
 
-    private static void copyFile(String file, String newFile) {
-        try (FileInputStream in = new FileInputStream(file);
-             FileOutputStream out = new FileOutputStream(newFile)) {
-
-            File oldfile = new File(file);
-            byte[] data = new byte[(int) oldfile.length()];
-            in.read(data);
-            out.write(data);
-            out.write(new byte[]{'/', '/'});
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static void alterFile(String file)  {
+    private static byte[] alterFile(byte[] file)  {
         int randomNum = (MIN + (RND.nextInt(MAX - MIN)));
-        try (FileOutputStream out = new FileOutputStream(file, true)) {
-            out.write(randomNum);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        byte[] newFile = new byte[file.length + 1];
+        System.arraycopy(file, 0, newFile, 0, file.length);
+        newFile[newFile.length - 1] = (byte) randomNum;
+        return newFile;
     }
 
     private static boolean compare(byte[] hash1, byte[] hash2){
