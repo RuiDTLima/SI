@@ -1,3 +1,5 @@
+package exe6;
+
 import java.io.FileOutputStream;
 import java.util.Arrays;
 import java.util.HashMap;

@@ -1,3 +1,5 @@
+package exe6;
+
 import java.util.Random;
 
 public class ForgeFile {

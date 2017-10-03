@@ -1,3 +1,5 @@
+package exe6;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -25,14 +27,7 @@ public class HashApp {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        int iterations = file.length / 1024;
-        int rest = file.length % 1024;
-
-        for (int i = 0; i < iterations; i++) {
-            sha.update(file, 1024 * i, 1024);
-        }
-        if (rest != 0)
-            sha.update(file, 1024 * iterations, rest);
+        sha.update(file);
 
         return sha.digest();
     }
@@ -53,7 +48,6 @@ public class HashApp {
 
     public static byte[] loadFile(String fileName) {
         try {
-            File f = new File(fileName);
             return Files.readAllBytes(Paths.get(fileName));
         } catch (IOException e) {
             e.printStackTrace();

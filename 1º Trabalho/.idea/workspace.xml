@@ -2,29 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="85337a8f-e1a0-494d-8e00-3363ec0c6b88" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/File1_0.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/File1_1.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/File1_2.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/File1_3.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/File1_4.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/File2_0.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/File2_1.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/File2_2.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/File2_3.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/File2_4.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/App.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/NewApp1.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/NewApp2.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/~$latorio.docx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/~WRL0118.tmp" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SI1º/ForgeFile.class" afterPath="$PROJECT_DIR$/out/production/SI1º/ForgeFile.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SI1º/ForgeFiles.class" afterPath="$PROJECT_DIR$/out/production/SI1º/ForgeFiles.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SI1º/HashApp.class" afterPath="$PROJECT_DIR$/out/production/SI1º/HashApp.class" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/SI1º/ForgeFiles.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/SI1º/HashApp.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Relatorio.docx" afterPath="$PROJECT_DIR$/Relatorio.docx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ForgeFile.java" afterPath="$PROJECT_DIR$/src/ForgeFile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ForgeFiles.java" afterPath="$PROJECT_DIR$/src/ForgeFiles.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/HashApp.java" afterPath="$PROJECT_DIR$/src/HashApp.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ForgeFile.java" afterPath="$PROJECT_DIR$/src/exe6/ForgeFile.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ForgeFiles.java" afterPath="$PROJECT_DIR$/src/exe6/ForgeFiles.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/HashApp.java" afterPath="$PROJECT_DIR$/src/exe6/HashApp.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,38 +21,58 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file leaf-file-name="HashApp.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/HashApp.java">
+        <entry file="file://$PROJECT_DIR$/src/exe6/HashApp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="16" column="42" lean-forward="true" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="48" />
+            <state relative-caret-position="556">
+              <caret line="50" column="57" lean-forward="false" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#596#597#0" expanded="true" />
-                <element signature="e#641#642#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Cypher.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/exe7/Cypher.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="395">
+              <caret line="38" column="46" lean-forward="false" selection-start-line="38" selection-start-column="46" selection-end-line="38" selection-end-column="46" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Decypher.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/exe7/Decypher.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="400">
+              <caret line="29" column="62" lean-forward="true" selection-start-line="29" selection-start-column="62" selection-end-line="29" selection-end-column="62" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="ForgeFile.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ForgeFile.java">
+        <entry file="file://$PROJECT_DIR$/src/exe6/ForgeFile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+            <state relative-caret-position="88">
+              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ForgeFiles.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/ForgeFiles.java">
+      <file leaf-file-name="ForgeFiles.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/exe6/ForgeFiles.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+            <state relative-caret-position="154">
+              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2850#2851#0" expanded="true" />
-                <element signature="e#2918#2919#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -97,9 +101,15 @@
         <option value="$PROJECT_DIR$/App.java" />
         <option value="$PROJECT_DIR$/GoodApp.java" />
         <option value="$PROJECT_DIR$/src/ForgeFile.java" />
-        <option value="$PROJECT_DIR$/src/HashApp.java" />
         <option value="$PROJECT_DIR$/File1_2.txt" />
         <option value="$PROJECT_DIR$/src/ForgeFiles.java" />
+        <option value="$PROJECT_DIR$/src/HashApp.java" />
+        <option value="$PROJECT_DIR$/src/exe5/ForgeFile.java" />
+        <option value="$PROJECT_DIR$/src/exe5/ForgeFiles.java" />
+        <option value="$PROJECT_DIR$/src/exe5/HashApp.java" />
+        <option value="$PROJECT_DIR$/src/exe6/HashApp.java" />
+        <option value="$PROJECT_DIR$/src/exe7/Cypher.java" />
+        <option value="$PROJECT_DIR$/src/exe7/Decypher.java" />
       </list>
     </option>
   </component>
@@ -123,6 +133,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -135,14 +149,22 @@
               <item name="1º Trabalho" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="SI1º" type="b2602c69:ProjectViewProjectNode" />
+              <item name="1º Trabalho" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="exe6" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SI1º" type="b2602c69:ProjectViewProjectNode" />
+              <item name="1º Trabalho" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="exe7" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -167,12 +189,31 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ForgeFiles">
+  <component name="RunManager" selected="Application.Cypher">
+    <configuration name="Cypher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="exe7.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="exe7.Cypher" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="GoodApp.java 8" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="SI1º" />
+      <envs />
+    </configuration>
     <configuration name="ForgeFile" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="ForgeFile" />
+      <option name="MAIN_CLASS_NAME" value="exe6.ForgeFile" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="File1_3.txt FIle2_3.txt 8" />
+      <option name="PROGRAM_PARAMETERS" value="BadApp.java GoodApp.java 16" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -184,9 +225,9 @@
     </configuration>
     <configuration name="ForgeFiles" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="ForgeFiles" />
+      <option name="MAIN_CLASS_NAME" value="exe6.ForgeFiles" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="BadApp.java GoodApp.java 32" />
+      <option name="PROGRAM_PARAMETERS" value="BadApp.java GoodApp.java 8" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -198,7 +239,7 @@
     </configuration>
     <configuration name="HashApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="HashApp" />
+      <option name="MAIN_CLASS_NAME" value="exe6.HashApp" />
       <option name="VM_PARAMETERS" value="" />
       <option name="PROGRAM_PARAMETERS" value="GoodApp.java 32" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
@@ -290,16 +331,18 @@
       <properties />
       <listeners />
     </configuration>
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Application.HashApp" />
       <item index="1" class="java.lang.String" itemvalue="Application.ForgeFile" />
       <item index="2" class="java.lang.String" itemvalue="Application.ForgeFiles" />
+      <item index="3" class="java.lang.String" itemvalue="Application.Cypher" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Application.ForgeFiles" />
-        <item index="1" class="java.lang.String" itemvalue="Application.ForgeFile" />
-        <item index="2" class="java.lang.String" itemvalue="Application.HashApp" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Application.Cypher" />
+        <item index="1" class="java.lang.String" itemvalue="Application.ForgeFiles" />
+        <item index="2" class="java.lang.String" itemvalue="Application.ForgeFile" />
+        <item index="3" class="java.lang.String" itemvalue="Application.HashApp" />
       </list>
     </recent_temporary>
   </component>
@@ -329,16 +372,16 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39863327" sideWeight="0.5021482" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32801822" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22234157" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17669173" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38268793" sideWeight="0.49785176" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28359908" sideWeight="0.49785176" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -355,31 +398,41 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ForgeFile.java</url>
-          <line>27</line>
+          <url>file://$PROJECT_DIR$/src/exe7/Cypher.java</url>
+          <line>38</line>
           <properties />
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ForgeFile.java</url>
-          <line>8</line>
-          <properties />
-          <option name="timeStamp" value="20" />
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="21" />
+      <option name="time" value="22" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/HashApp.java">
+    <entry file="file://$PROJECT_DIR$/src/exe6/ForgeFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/exe6/ForgeFiles.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/exe6/HashApp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
           <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#596#597#0" expanded="true" />
-            <element signature="e#641#642#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -388,26 +441,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="e#125#126#0" expanded="true" />
-            <element signature="e#155#156#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ForgeFiles.java">
+    <entry file="file://$PROJECT_DIR$/src/exe6/ForgeFiles.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="572">
           <caret line="30" column="65" lean-forward="false" selection-start-line="30" selection-start-column="65" selection-end-line="30" selection-end-column="65" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2850#2851#0" expanded="true" />
-            <element signature="e#2918#2919#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ForgeFile.java">
+    <entry file="file://$PROJECT_DIR$/src/exe6/ForgeFile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
           <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
@@ -415,19 +462,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/HashApp.java">
+    <entry file="file://$PROJECT_DIR$/src/exe6/HashApp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="21" column="20" lean-forward="false" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#596#597#0" expanded="true" />
-            <element signature="e#641#642#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ForgeFile.java">
+    <entry file="file://$PROJECT_DIR$/src/exe6/ForgeFile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="594">
           <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
@@ -435,13 +480,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/App.java" />
     <entry file="file://$PROJECT_DIR$/BadApp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -453,38 +492,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#125#126#0" expanded="true" />
-            <element signature="e#155#156#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ForgeFiles.java">
+    <entry file="file://$PROJECT_DIR$/src/exe6/ForgeFiles.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
           <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2850#2851#0" expanded="true" />
-            <element signature="e#2918#2919#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/HashApp.java">
+    <entry file="file://$PROJECT_DIR$/src/exe6/HashApp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="21" column="20" lean-forward="false" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#596#597#0" expanded="true" />
-            <element signature="e#641#642#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ForgeFile.java">
+    <entry file="file://$PROJECT_DIR$/src/exe6/ForgeFile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="594">
           <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
@@ -492,13 +523,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/App.java" />
     <entry file="file://$PROJECT_DIR$/BadApp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -510,33 +535,25 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#125#126#0" expanded="true" />
-            <element signature="e#155#156#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ForgeFiles.java">
+    <entry file="file://$PROJECT_DIR$/src/exe6/ForgeFiles.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
           <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2850#2851#0" expanded="true" />
-            <element signature="e#2918#2919#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/HashApp.java">
+    <entry file="file://$PROJECT_DIR$/src/exe6/HashApp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="12" column="9" lean-forward="false" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#596#597#0" expanded="true" />
-            <element signature="e#641#642#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -552,14 +569,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#125#126#0" expanded="true" />
-            <element signature="e#155#156#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ForgeFile.java">
+    <entry file="file://$PROJECT_DIR$/src/exe6/ForgeFile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
           <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
@@ -567,14 +580,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/HashApp.java">
+    <entry file="file://$PROJECT_DIR$/src/exe6/HashApp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="12" column="9" lean-forward="false" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#596#597#0" expanded="true" />
-            <element signature="e#641#642#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -583,10 +594,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#125#126#0" expanded="true" />
-            <element signature="e#155#156#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -597,7 +604,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ForgeFile.java">
+    <entry file="file://$PROJECT_DIR$/src/exe6/ForgeFile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="17" column="41" lean-forward="false" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="41" />
@@ -612,13 +619,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/App.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/security/MessageDigestSpi.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-48">
@@ -630,7 +631,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="301" column="16" lean-forward="false" selection-start-line="301" selection-start-column="16" selection-end-line="301" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -638,10 +638,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="e#125#126#0" expanded="true" />
-            <element signature="e#155#156#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -649,11 +645,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
           <caret line="856" column="16" lean-forward="false" selection-start-line="856" selection-start-column="16" selection-end-line="856" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/File1_0.txt">
+    <entry file="file://$PROJECT_DIR$/File1_0.txt" />
+    <entry file="file://$PROJECT_DIR$/File1_1.txt" />
+    <entry file="file://$PROJECT_DIR$/File1_3.txt" />
+    <entry file="file://$PROJECT_DIR$/File1_4.txt" />
+    <entry file="file://$PROJECT_DIR$/File2_0.txt" />
+    <entry file="file://$PROJECT_DIR$/File2_1.txt" />
+    <entry file="file://$PROJECT_DIR$/File2_2.txt" />
+    <entry file="file://$PROJECT_DIR$/File2_3.txt" />
+    <entry file="file://$PROJECT_DIR$/File2_4.txt" />
+    <entry file="file://$PROJECT_DIR$/File1_2.txt" />
+    <entry file="file://$PROJECT_DIR$/cert.end.entities/Alice_2.cer">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -661,15 +666,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/File1_1.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/File1_3.txt">
+    <entry file="file://$PROJECT_DIR$/cert.end.entities/Alice_1.cer">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -677,67 +674,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/File1_4.txt">
+    <entry file="file://$PROJECT_DIR$/src/exe6/HashApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/File2_0.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/File2_1.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/File2_2.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/File2_3.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/File2_4.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/HashApp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="16" column="42" lean-forward="true" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="48" />
+        <state relative-caret-position="556">
+          <caret line="50" column="57" lean-forward="false" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="57" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#596#597#0" expanded="true" />
-            <element signature="e#641#642#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/File1_2.txt">
+    <entry file="file://$PROJECT_DIR$/src/exe6/ForgeFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/exe6/ForgeFiles.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/jre/lib/rt.jar!/org/jcp/xml/dsig/internal/dom/XMLDSigRI.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cifra.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -745,22 +718,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ForgeFile.java">
+    <entry file="file://$PROJECT_DIR$/src/exe7/Cypher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="395">
+          <caret line="38" column="46" lean-forward="false" selection-start-line="38" selection-start-column="46" selection-end-line="38" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ForgeFiles.java">
+    <entry file="file://$PROJECT_DIR$/src/exe7/Decypher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state relative-caret-position="400">
+          <caret line="29" column="62" lean-forward="true" selection-start-line="29" selection-start-column="62" selection-end-line="29" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2850#2851#0" expanded="true" />
-            <element signature="e#2918#2919#0" expanded="true" />
           </folding>
         </state>
       </provider>
