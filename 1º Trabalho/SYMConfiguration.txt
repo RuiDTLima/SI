@@ -1,0 +1,3 @@
+primitive:AES
+operationMode:CBC
+paddingMode:PKCS5Padding
