@@ -1,9 +1,6 @@
 package exe7;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import static java.nio.file.StandardOpenOption.CREATE;
 
 public class IO {
     /**

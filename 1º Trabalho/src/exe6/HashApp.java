@@ -8,8 +8,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class HashApp {
     public static void main(String[] args) {
-        byte[] file = loadFile(args[0]);
-        byte[] digest = getNBitsFromHash(file, Integer.parseInt(args[1]));
+        byte[] digest = getNBitsFromHash(loadFile(args[0]), Integer.parseInt(args[1]));
         System.out.print("SHA1(" + args[0] + ") = ");
         for (byte aDigest : digest)
             System.out.print(String.format("%1$02x", aDigest));
@@ -27,7 +26,6 @@ public class HashApp {
             e.printStackTrace();
         }
         sha.update(file);
-
         return sha.digest();
     }
 

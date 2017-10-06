@@ -11,7 +11,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 
 public class App {
-    private static final String ENCRYPTEDFILE = "EncryptedMessage.txt", RESULTFILE = "Result.txt",
+    public static final String ENCRYPTEDFILE = "EncryptedMessage.txt", RESULTFILE = "Result.txt",
                                 SYMCONFIGURATION = "SYMConfiguration.txt", ASYMCONFIGURATION = "ASYMConfiguration.txt",
                                 METADATAFILE = "MetaData.txt",  CERTIFICATESFILE = "Certificates.txt";
 
@@ -33,7 +33,7 @@ public class App {
     }
 
     private static void cipherMode(String fileName) throws IOException, IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException {
-        SecretKey keyMessage = symmetricCipher(IO.loadFile(fileName));
+        SecretKey keyMessage = symmetricCipher(fileName);
 
         // wrap the created key
 
@@ -51,12 +51,12 @@ public class App {
 
         // decipher the message using the key deciphered before
 
-        symmetricDecipher(IO.loadFile(fileName), CustomCipher.privateKey);
+        symmetricDecipher(fileName, CustomCipher.privateKey);
     }
 
     /**
      * Create the encipher object with the settings defined on the configuration file and encrypts the message.
-     * @param message Message to be encrypted.
+     * @param fileName Message to be encrypted.
      * @return SecretKey used to encrypt the message.
      * @throws InvalidKeyException
      * @throws NoSuchAlgorithmException
@@ -65,18 +65,18 @@ public class App {
      * @throws BadPaddingException
      * @throws IllegalBlockSizeException
      */
-    private static SecretKey symmetricCipher(byte[] message) throws IOException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
+    private static SecretKey symmetricCipher(String fileName) throws IOException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
         Encryptor ecp = new Encryptor();
         ecp.init(loadConfiguration(SYMCONFIGURATION));
 
-        IO.writeFile(ENCRYPTEDFILE, ecp.process(message));
+        ecp.process(fileName, ENCRYPTEDFILE);
 
         return ecp.getKey();
     }
 
     /**
      * Create the decipher object with the settings defined on the configuration file and decrypts the cryptogram.
-     * @param cryptogram Message to be decrypted.
+     * @param fileName Message to be decrypted.
      * @param key SecretKey used to decrypt te message.
      * @throws IOException
      * @throws NoSuchPaddingException
@@ -85,12 +85,11 @@ public class App {
      * @throws BadPaddingException
      * @throws IllegalBlockSizeException
      */
-    private static void symmetricDecipher(byte[] cryptogram, SecretKey key) throws IOException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
+    private static void symmetricDecipher(String fileName, SecretKey key) throws IOException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
         Decryptor dcp = new Decryptor();
         dcp.init(loadConfiguration(SYMCONFIGURATION), key);
 
-        byte[] message = dcp.process(cryptogram);
-        IO.writeFile(RESULTFILE, message);
+        dcp.process(fileName, RESULTFILE);
     }
 
     /**
