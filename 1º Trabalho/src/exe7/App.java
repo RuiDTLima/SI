@@ -1,13 +1,14 @@
 package exe7;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
+import javax.crypto.*;
 import java.io.*;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
 import java.util.HashMap;
 
 public class App {
@@ -32,16 +33,36 @@ public class App {
         }
     }
 
-    private static void cipherMode(String fileName) throws IOException, IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException {
-        SecretKey keyMessage = symmetricCipher(fileName);
+    private static void cipherMode(String fileName) throws IOException, IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, CertificateException {
+        HashMap<String, String> configuration = loadConfiguration(SYMCONFIGURATION);
 
-        // wrap the created key
+        SecretKey symmetricKey = generateKey(configuration);
 
-        // Certificate certificate = validateCertificates();
-        // load root certificates into key, and loda other certificates to do certpath
-        // validate certificates
-        // cipher
-        //assymetricCipher();
+        symmetricCipher(fileName, symmetricKey);
+
+        PublicKey publicKey = GetPublicKey();
+
+        asymmetricCypher(symmetricKey, publicKey);
+    }
+
+    private static void asymmetricCypher(SecretKey symmetricKey, PublicKey publicKey) throws IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, BadPaddingException, IllegalBlockSizeException {
+        Encryptor ecp = new Encryptor();
+        ecp.initAsymmetric(loadConfiguration(ASYMCONFIGURATION), publicKey);
+        ecp.process(symmetricKey, CustomCipher.privateIv, METADATAFILE);
+    }
+
+    private static SecretKey generateKey(HashMap<String, String> configuration) throws NoSuchAlgorithmException {
+        return KeyGenerator.getInstance(configuration.get(CustomCipher.PRIMITIVE)).generateKey();
+    }
+
+    private static PublicKey GetPublicKey() throws FileNotFoundException, CertificateException {
+        FileInputStream fis = new FileInputStream("cert.end.entities/Alice_1.cer");
+        BufferedInputStream bis = new BufferedInputStream(fis);
+
+        CertificateFactory cf = CertificateFactory.getInstance("X.509");
+
+        Certificate cert = cf.generateCertificate(bis);
+        return cert.getPublicKey();
     }
 
     private static void decipherMode(String fileName) throws IOException, IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException {
@@ -65,14 +86,13 @@ public class App {
      * @throws BadPaddingException
      * @throws IllegalBlockSizeException
      */
-    private static SecretKey symmetricCipher(String fileName) throws IOException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
+    private static void symmetricCipher(String fileName, SecretKey key) throws IOException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
         Encryptor ecp = new Encryptor();
-        ecp.init(loadConfiguration(SYMCONFIGURATION));
+        ecp.initSymmetric(loadConfiguration(SYMCONFIGURATION), key);
 
         ecp.process(fileName, ENCRYPTEDFILE);
-
-        return ecp.getKey();
     }
+
 
     /**
      * Create the decipher object with the settings defined on the configuration file and decrypts the cryptogram.

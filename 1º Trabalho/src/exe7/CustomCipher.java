@@ -4,10 +4,10 @@ import javax.crypto.*;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.security.InvalidKeyException;
 
 public class CustomCipher {
-    protected final String PRIMITIVE = "primitive", OPERATIONMODE = "operationMode", PADDINGMODE= "paddingMode";
-    protected SecretKey key;
+    public static final String PRIMITIVE = "primitive", OPERATIONMODE = "operationMode", PADDINGMODE= "paddingMode";
     protected Cipher cipher;
     public static SecretKey privateKey;
     public static byte[] privateIv;
@@ -33,11 +33,16 @@ public class CustomCipher {
         }
     }
 
-    public byte[] getIV(){
-        return cipher.getIV();
+    public void process(SecretKey key, byte[] privateIv, String fileNameOut) throws BadPaddingException, IllegalBlockSizeException, InvalidKeyException {
+        try (FileOutputStream writer = new FileOutputStream(fileNameOut)){
+            writer.write(cipher.wrap(key));
+            writer.write(privateIv);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public SecretKey getKey() {
-        return key;
+    public byte[] getIV(){
+        return cipher.getIV();
     }
 }
