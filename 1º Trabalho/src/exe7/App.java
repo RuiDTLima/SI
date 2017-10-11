@@ -1,25 +1,25 @@
 package exe7;
 
+import exe7.criptographicBlocks.AsymmetricCipher;
+import exe7.criptographicBlocks.AsymmetricDecipher;
+import exe7.criptographicBlocks.SymmetricCipher;
+import exe7.criptographicBlocks.SymmetricDecipher;
+import javafx.util.Pair;
 import javax.crypto.*;
 import java.io.*;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.PublicKey;
+import java.security.*;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
-import java.util.HashMap;
 
 public class App {
-    public static final String ENCRYPTEDFILE = "EncryptedMessage.txt", RESULTFILE = "Result.txt",
-                                SYMCONFIGURATION = "SYMConfiguration.txt", ASYMCONFIGURATION = "ASYMConfiguration.txt",
-                                METADATAFILE = "MetaData.txt",  CERTIFICATESFILE = "Certificates.txt";
+    private static final String  RESULTFILE = "Result.txt", METADATAFILE = "MetaData.txt",
+                                CERTIFICATESFILE = "Certificates.txt", CIPHERED_FILE = "Ciphered_File.txt";
 
     public static void main(String[] args) {
         try {
             run("teste.txt", "cipher");
-            run("EncryptedMessage.txt", "decipher");
+            run(CIPHERED_FILE + args[0], "decipher");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -34,29 +34,25 @@ public class App {
     }
 
     private static void cipherMode(String fileName) throws IOException, IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, CertificateException {
-        HashMap<String, String> configuration = loadConfiguration(SYMCONFIGURATION);
+        SymmetricCipher symCipher = new SymmetricCipher();
+        SecretKey secretKey = generateKey(symCipher.getConfiguration().get(SymmetricCipher.PRIMITIVE));
+        symCipher.init(secretKey);
 
-        SecretKey symmetricKey = generateKey(configuration);
+        symCipher.execute(fileName, CIPHERED_FILE);    //TODO change file to write, alterar ficheiro para o qual se vai escrever
 
-        symmetricCipher(fileName, symmetricKey);
+        AsymmetricCipher asymCipher = new AsymmetricCipher();
 
-        PublicKey publicKey = GetPublicKey();
+        asymCipher.init(GetPublicKey(asymCipher.getConfiguration().get(AsymmetricCipher.CERTIFICATE)));
 
-        asymmetricCypher(symmetricKey, publicKey);
+        asymCipher.execute(secretKey, symCipher.getIV(), METADATAFILE);
     }
 
-    private static void asymmetricCypher(SecretKey symmetricKey, PublicKey publicKey) throws IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, BadPaddingException, IllegalBlockSizeException {
-        Encryptor ecp = new Encryptor();
-        ecp.initAsymmetric(loadConfiguration(ASYMCONFIGURATION), publicKey);
-        ecp.process(symmetricKey, CustomCipher.privateIv, METADATAFILE);
+    private static SecretKey generateKey(String primitive) throws NoSuchAlgorithmException {
+        return KeyGenerator.getInstance(primitive).generateKey();
     }
 
-    private static SecretKey generateKey(HashMap<String, String> configuration) throws NoSuchAlgorithmException {
-        return KeyGenerator.getInstance(configuration.get(CustomCipher.PRIMITIVE)).generateKey();
-    }
-
-    private static PublicKey GetPublicKey() throws FileNotFoundException, CertificateException {
-        FileInputStream fis = new FileInputStream("cert.end.entities/Alice_1.cer");
+    private static PublicKey GetPublicKey(String certificate) throws FileNotFoundException, CertificateException {
+        FileInputStream fis = new FileInputStream(certificate);
         BufferedInputStream bis = new BufferedInputStream(fis);
 
         CertificateFactory cf = CertificateFactory.getInstance("X.509");
@@ -66,70 +62,16 @@ public class App {
     }
 
     private static void decipherMode(String fileName) throws IOException, IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException {
-        // load key store containing private key and meta data
-        // get the key to decipher message
-        //assymetricDecipher();
+        AsymmetricDecipher asymDecipher = new AsymmetricDecipher();
+        PrivateKey key = getPrivateKey();
 
-        // decipher the message using the key deciphered before
+        asymDecipher.init(key);
 
-        symmetricDecipher(fileName, CustomCipher.privateKey);
-    }
+        Pair<SecretKey, byte[]> pair = asymDecipher.execute(METADATAFILE);
 
-    /**
-     * Create the encipher object with the settings defined on the configuration file and encrypts the message.
-     * @param fileName Message to be encrypted.
-     * @return SecretKey used to encrypt the message.
-     * @throws InvalidKeyException
-     * @throws NoSuchAlgorithmException
-     * @throws NoSuchPaddingException
-     * @throws IOException
-     * @throws BadPaddingException
-     * @throws IllegalBlockSizeException
-     */
-    private static void symmetricCipher(String fileName, SecretKey key) throws IOException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
-        Encryptor ecp = new Encryptor();
-        ecp.initSymmetric(loadConfiguration(SYMCONFIGURATION), key);
+        SymmetricDecipher symDecipher = new SymmetricDecipher();
 
-        ecp.process(fileName, ENCRYPTEDFILE);
-    }
-
-
-    /**
-     * Create the decipher object with the settings defined on the configuration file and decrypts the cryptogram.
-     * @param fileName Message to be decrypted.
-     * @param key SecretKey used to decrypt te message.
-     * @throws IOException
-     * @throws NoSuchPaddingException
-     * @throws NoSuchAlgorithmException
-     * @throws InvalidKeyException
-     * @throws BadPaddingException
-     * @throws IllegalBlockSizeException
-     */
-    private static void symmetricDecipher(String fileName, SecretKey key) throws IOException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
-        Decryptor dcp = new Decryptor();
-        dcp.init(loadConfiguration(SYMCONFIGURATION), key);
-
-        dcp.process(fileName, RESULTFILE);
-    }
-
-    /**
-     * Read the settings described in configuration file into a map.
-     * @param fileName Name of the file to read from.
-     * @return HashMap<String, String> containing all the settings.
-     * @throws IOException
-     */
-    private static HashMap<String, String> loadConfiguration(String fileName) throws IOException {
-        HashMap<String, String> configs = new HashMap<>();
-        String toProcess = new String(IO.loadFile(fileName));
-
-        String[] config = toProcess.split("\r\n");
-        String[] temp;
-
-        for (String curr : config) {
-            temp = curr.split(":");
-            configs.put(temp[0], temp[1]);
-        }
-
-        return configs;
+        symDecipher.init(pair.getKey(), pair.getValue());
+        symDecipher.execute(fileName, RESULTFILE); //TODO change file to write, alterar ficheiro para o qual se vai escrever
     }
 }
