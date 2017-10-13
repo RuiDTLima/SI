@@ -8,13 +8,15 @@ import javafx.util.Pair;
 import javax.crypto.*;
 import java.io.*;
 import java.security.*;
+import java.security.cert.*;
 import java.security.cert.Certificate;
-import java.security.cert.CertificateException;
-import java.security.cert.CertificateFactory;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class App {
     private static final String  RESULTFILE = "Result.txt", METADATAFILE = "MetaData.txt",
                                 CERTIFICATESFILE = "Certificates.txt", CIPHERED_FILE = "Ciphered_File.txt";
+    private static final char[] PASSWORD = "changeit".toCharArray();
 
     public static void main(String[] args) {
         try {
@@ -33,7 +35,7 @@ public class App {
         }
     }
 
-    private static void cipherMode(String fileName) throws IOException, IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, CertificateException {
+    private static void cipherMode(String fileName) throws IOException, IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, CertificateException, KeyStoreException {
         SymmetricCipher symCipher = new SymmetricCipher();
         SecretKey secretKey = generateKey(symCipher.getConfiguration().get(SymmetricCipher.PRIMITIVE));
         symCipher.init(secretKey);
@@ -42,7 +44,7 @@ public class App {
 
         AsymmetricCipher asymCipher = new AsymmetricCipher();
 
-        asymCipher.init(GetPublicKey(asymCipher.getConfiguration().get(AsymmetricCipher.CERTIFICATE)));
+        // asymCipher.init(GetPublicKey(asymCipher.getConfiguration().get(AsymmetricCipher.CERTIFICATE)));
 
         asymCipher.execute(secretKey, symCipher.getIV(), METADATAFILE);
     }
@@ -51,15 +53,49 @@ public class App {
         return KeyGenerator.getInstance(primitive).generateKey();
     }
 
-    private static PublicKey GetPublicKey(String certificate) throws FileNotFoundException, CertificateException {
-        FileInputStream fis = new FileInputStream(certificate);
-        BufferedInputStream bis = new BufferedInputStream(fis);
+    private static PublicKey GetPublicKey(String certificate) throws IOException, CertificateException, KeyStoreException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, CertPathBuilderException {
 
         CertificateFactory cf = CertificateFactory.getInstance("X.509");
+        KeyStore trustAnchor1 = loadTrustAnchor("trust.anchors/CA1.jks"), trustAnchor2 = loadTrustAnchor("trust.anchors/CA2.jks");
 
-        Certificate cert = cf.generateCertificate(bis);
-        PublicKey key = cert.getPublicKey();
+        X509CertSelector certSelector = new X509CertSelector();
+        certSelector.setSubject(certificate);
+
+        PKIXBuilderParameters parameters = new PKIXBuilderParameters(trustAnchor1, certSelector);
+        CertPathBuilderResult result = CertPathBuilder.getInstance("PKIX")
+                                                      .build(parameters);
+        CollectionCertStoreParameters certStoreParameters = new CollectionCertStoreParameters(loadIntermediateCertificates(cf));
+
+        Certificate cert = loadCertificate(cf, certificate);
         return cert.getPublicKey();
+    }
+
+    private static Certificate loadCertificate(CertificateFactory certificateFactory, String certificateName ) throws IOException, CertificateException {
+        Certificate cert;
+        try(BufferedInputStream bis = new BufferedInputStream(new FileInputStream(certificateName))){
+            cert = certificateFactory.generateCertificate(bis);
+        }
+        return cert;
+    }
+
+    private static Collection<Certificate> loadIntermediateCertificates(CertificateFactory certificateFactory) throws CertificateException, IOException {
+        File folder = new File("cert.CAintermedia");
+        File[] listOfFiles = folder.listFiles();
+        ArrayList<Certificate> certificates = new ArrayList<>(); // Assume-se que no package apenas existem certificados
+
+        for (File listOfFile : listOfFiles) {
+            certificates.add(loadCertificate(certificateFactory, listOfFile.getName()));
+        }
+
+        return certificates;
+    }
+
+    private static KeyStore loadTrustAnchor(String certificateName) throws KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException {
+        try(FileInputStream fis = new FileInputStream(certificateName)){
+            KeyStore trustAnchor1 = KeyStore.getInstance("PKIX");
+            trustAnchor1.load(fis, PASSWORD);
+            return trustAnchor1;
+        }
     }
 
     private static void decipherMode(String fileName) throws IOException, IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, KeyStoreException, CertificateException, UnrecoverableKeyException {
@@ -78,9 +114,8 @@ public class App {
     private static PrivateKey getPrivateKey() throws KeyStoreException, IOException, CertificateException, NoSuchAlgorithmException, UnrecoverableKeyException {
         KeyStore ks = KeyStore.getInstance("PKCS12");
         FileInputStream fis = new java.io.FileInputStream("pfx/Alice_1.pfx");   //TODO ler do ficheiro
-        char[] password = "changeit".toCharArray();
-        ks.load(fis, password);
+        ks.load(fis, PASSWORD);
         fis.close();
-        return (PrivateKey)ks.getKey("1", password);
+        return (PrivateKey)ks.getKey("1", PASSWORD);
     }
 }

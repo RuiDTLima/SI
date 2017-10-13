@@ -25,27 +25,26 @@ public class ForgeFiles {
         else {
             int j;
             for (int i = 0; i < 5; i++) {
+                reset(original1, original2);
                 j = 0;
                 do {
                     count++;
-                    file1 = alterFile(file1);
-                    file2 = alterFile(file2);
+                    file1 = alterFile(file1, (byte) (MIN + (RND.nextInt(MAX - MIN))));
+                    file2 = alterFile(file2, (byte) (MIN + (RND.nextInt(MAX - MIN))));
                     hashFile1 = getHash(file1, size);
                     hashFile2 = getHash(file2, size);
                 } while (!compare(hashFile1, hashFile2, j++));
 
                 saveFiles(file1, file2, i);
 
-                reset(original1, original2);
             }
-
             System.out.println(count / 5);
         }
     }
 
     private static void reset(byte[] original1, byte[] original2) {
-        file1 = original1.clone();
-        file2 = original2.clone();
+        file1 = alterFile(original1.clone(), "//".getBytes());
+        file2 = alterFile(original2.clone(), "//".getBytes());
         hash1.clear();
         hash2.clear();
     }
@@ -75,11 +74,10 @@ public class ForgeFiles {
         return false;
     }
 
-    private static byte[] alterFile(byte[] file)  {
-        int randomNum = (MIN + (RND.nextInt(MAX - MIN)));
-        byte[] newFile = new byte[file.length + 1];
+    private static byte[] alterFile(byte[] file, byte... toAdd) {
+        byte[] newFile = new byte[file.length + toAdd.length];
         System.arraycopy(file, 0, newFile, 0, file.length);
-        newFile[newFile.length - 1] = (byte) randomNum;
+        System.arraycopy(toAdd, 0, newFile, file.length, toAdd.length);
         return newFile;
     }
 
