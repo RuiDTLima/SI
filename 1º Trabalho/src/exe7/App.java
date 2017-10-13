@@ -19,7 +19,7 @@ public class App {
     public static void main(String[] args) {
         try {
             run("teste.txt", "cipher");
-            run(CIPHERED_FILE + args[0], "decipher");
+            run(CIPHERED_FILE, "decipher");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -58,20 +58,29 @@ public class App {
         CertificateFactory cf = CertificateFactory.getInstance("X.509");
 
         Certificate cert = cf.generateCertificate(bis);
+        PublicKey key = cert.getPublicKey();
         return cert.getPublicKey();
     }
 
-    private static void decipherMode(String fileName) throws IOException, IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException {
+    private static void decipherMode(String fileName) throws IOException, IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, KeyStoreException, CertificateException, UnrecoverableKeyException {
         AsymmetricDecipher asymDecipher = new AsymmetricDecipher();
         PrivateKey key = getPrivateKey();
 
         asymDecipher.init(key);
-
         Pair<SecretKey, byte[]> pair = asymDecipher.execute(METADATAFILE);
 
         SymmetricDecipher symDecipher = new SymmetricDecipher();
 
         symDecipher.init(pair.getKey(), pair.getValue());
         symDecipher.execute(fileName, RESULTFILE); //TODO change file to write, alterar ficheiro para o qual se vai escrever
+    }
+
+    private static PrivateKey getPrivateKey() throws KeyStoreException, IOException, CertificateException, NoSuchAlgorithmException, UnrecoverableKeyException {
+        KeyStore ks = KeyStore.getInstance("PKCS12");
+        FileInputStream fis = new java.io.FileInputStream("pfx/Alice_1.pfx");   //TODO ler do ficheiro
+        char[] password = "changeit".toCharArray();
+        ks.load(fis, password);
+        fis.close();
+        return (PrivateKey)ks.getKey("1", password);
     }
 }

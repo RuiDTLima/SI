@@ -1,8 +1,7 @@
 package exe7.criptographicBlocks;
 
 import javax.crypto.*;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
@@ -27,9 +26,9 @@ public class AsymmetricCipher {
         cipher.init(Cipher.WRAP_MODE, key);
     }
 
-    public void execute(SecretKey key, byte[] iv, String fileNameOut) throws BadPaddingException, IllegalBlockSizeException, InvalidKeyException {
-        try (FileOutputStream writer = new FileOutputStream(fileNameOut)){
-            writer.write(iv.length);
+    public void execute(SecretKey key, byte[] iv, String fileNameOut) throws BadPaddingException, IllegalBlockSizeException, InvalidKeyException, FileNotFoundException {
+        try (DataOutputStream writer = new DataOutputStream(new FileOutputStream(fileNameOut))){
+            writer.writeInt(iv.length);
             writer.write(iv);
             writer.write(cipher.wrap(key));
         } catch (IOException e) {

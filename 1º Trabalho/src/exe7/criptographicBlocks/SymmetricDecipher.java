@@ -8,7 +8,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
 public class SymmetricDecipher extends SymmetricBlock{
-    public static final String CONFIGURATION_FILE = "ASYMCipherConfiguration.txt";
+    public static final String CONFIGURATION_FILE = "SYMConfiguration.txt";
 
     public SymmetricDecipher() throws IOException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, InvalidAlgorithmParameterException {
         super(CONFIGURATION_FILE);
