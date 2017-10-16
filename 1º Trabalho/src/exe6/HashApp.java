@@ -1,4 +1,5 @@
-import java.io.File;
+package exe6;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -7,8 +8,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class HashApp {
     public static void main(String[] args) {
-        byte[] file = loadFile(args[0]);
-        byte[] digest = getNBitsFromHash(file, Integer.parseInt(args[1]));
+        byte[] digest = getNBitsFromHash(loadFile(args[0]), Integer.parseInt(args[1]));
         System.out.print("SHA1(" + args[0] + ") = ");
         for (byte aDigest : digest)
             System.out.print(String.format("%1$02x", aDigest));
@@ -25,15 +25,6 @@ public class HashApp {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-/*        int iterations = file.length / 1024;
-        int rest = file.length % 1024;
-
-        for (int i = 0; i < iterations; i++) {
-            sha.update(file, 1024 * i, 1024);
-        }
-        if (rest != 0)
-            sha.update(file, 1024 * iterations, rest);*/
-
         sha.update(file);
 
         return sha.digest();
@@ -55,7 +46,6 @@ public class HashApp {
 
     public static byte[] loadFile(String fileName) {
         try {
-            File f = new File(fileName);
             return Files.readAllBytes(Paths.get(fileName));
         } catch (IOException e) {
             e.printStackTrace();
