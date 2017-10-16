@@ -5,7 +5,6 @@ import exe7.criptographicBlocks.AsymmetricDecipher;
 import exe7.criptographicBlocks.SymmetricCipher;
 import exe7.criptographicBlocks.SymmetricDecipher;
 import javafx.util.Pair;
-
 import javax.crypto.*;
 import java.io.*;
 import java.security.*;
@@ -20,28 +19,28 @@ public class App {
     private static final char[] PASSWORD = "changeit".toCharArray();
 
     public static void main(String[] args) {
+        String fileName = args[0], operation = args[1];
         try {
-            run(args[0], args[1]);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+            String[] components = fileName.split("[.]");
 
-    public static void run(String fileName, String operation) throws Exception {
-        String[] components = fileName.split("[.]");
-
-        switch (operation){
-            case "cipher":
+            if(operation.equalsIgnoreCase("cipher")) {
                 resultFile = String.format("%sCiphered.%s", components[0], components[1]);
                 metadataFile = String.format("%sMetaData.%s", components[0], components[1]);
                 cipherMode(fileName);
-                break;
-            case "decipher":
+            }
+            else if(operation.equalsIgnoreCase("decipher")) {
                 resultFile = String.format("%sDeciphered.%s", components[0], components[1]);
                 metadataFile = components[0].replace("Ciphered", "") + "Metadata." + components[1];
                 decipherMode(fileName);
-                break;
-            default: throw new Exception("Operation not supported");
+            }
+            else
+                System.out.println("Invalid Operation.\n Valid operations are \"cipher\" and \"decipher\"");
+        } catch (InvalidKeyException | CertPathValidatorException | CertificateException | NoSuchAlgorithmException
+                | KeyStoreException | InvalidAlgorithmParameterException | IllegalBlockSizeException
+                | UnrecoverableKeyException | IOException | BadPaddingException | NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (CertPathBuilderException e) {
+            System.out.println("Invalid trust anchor, configure a diferent one in ASYMCipherConfiguration.txt");
         }
     }
 

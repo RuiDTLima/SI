@@ -2,28 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="85337a8f-e1a0-494d-8e00-3363ec0c6b88" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Ciphered_File.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/EncryptedMessage.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MetaData.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/SI1º/ForgeFiles.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/SI1º/HashApp.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/teste.txt" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SI1º/exe6/ForgeFile.class" afterPath="$PROJECT_DIR$/out/production/SI1º/exe6/ForgeFile.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SI1º/exe6/ForgeFiles.class" afterPath="$PROJECT_DIR$/out/production/SI1º/exe6/ForgeFiles.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SI1º/exe6/HashApp.class" afterPath="$PROJECT_DIR$/out/production/SI1º/exe6/HashApp.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SI1º/exe7/App.class" afterPath="$PROJECT_DIR$/out/production/SI1º/exe7/App.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SI1º/exe7/IO.class" afterPath="$PROJECT_DIR$/out/production/SI1º/exe7/IO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SI1º/exe7/criptographicBlocks/AsymmetricCipher.class" afterPath="$PROJECT_DIR$/out/production/SI1º/exe7/criptographicBlocks/AsymmetricCipher.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SI1º/exe7/criptographicBlocks/AsymmetricDecipher.class" afterPath="$PROJECT_DIR$/out/production/SI1º/exe7/criptographicBlocks/AsymmetricDecipher.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SI1º/exe7/criptographicBlocks/SymmetricBlock.class" afterPath="$PROJECT_DIR$/out/production/SI1º/exe7/criptographicBlocks/SymmetricBlock.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SI1º/exe7/criptographicBlocks/SymmetricCipher.class" afterPath="$PROJECT_DIR$/out/production/SI1º/exe7/criptographicBlocks/SymmetricCipher.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SI1º/exe7/criptographicBlocks/SymmetricDecipher.class" afterPath="$PROJECT_DIR$/out/production/SI1º/exe7/criptographicBlocks/SymmetricDecipher.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ASYMCipherConfiguration.txt" afterPath="$PROJECT_DIR$/ASYMCipherConfiguration.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/exe7/App.java" afterPath="$PROJECT_DIR$/src/exe7/App.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/exe7/criptographicBlocks/AsymmetricCipher.java" afterPath="$PROJECT_DIR$/src/exe7/criptographicBlocks/AsymmetricCipher.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/exe7/criptographicBlocks/AsymmetricDecipher.java" afterPath="$PROJECT_DIR$/src/exe7/criptographicBlocks/AsymmetricDecipher.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -44,8 +25,8 @@
       <file leaf-file-name="App.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/exe7/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="29" column="61" lean-forward="true" selection-start-line="29" selection-start-column="61" selection-end-line="29" selection-end-column="61" />
+            <state relative-caret-position="51">
+              <caret line="3" column="46" lean-forward="false" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -104,9 +85,9 @@
         <option value="$PROJECT_DIR$/src/exe6/ForgeFiles.java" />
         <option value="$PROJECT_DIR$/src/exe6/ForgeFile.java" />
         <option value="$PROJECT_DIR$/src/exe7/criptographicBlocks/AsymmetricCipher.java" />
-        <option value="$PROJECT_DIR$/ASYMCipherConfiguration.txt" />
         <option value="$PROJECT_DIR$/src/exe7/criptographicBlocks/AsymmetricDecipher.java" />
         <option value="$PROJECT_DIR$/teste.txt" />
+        <option value="$PROJECT_DIR$/ASYMCipherConfiguration.txt" />
         <option value="$PROJECT_DIR$/src/exe7/App.java" />
       </list>
     </option>
@@ -620,12 +601,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1506085166341</updated>
-      <workItem from="1508162769734" duration="5587000" />
+      <workItem from="1508162769734" duration="6431000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5587000" />
+    <option name="totallyTimeSpent" value="6431000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -854,22 +835,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ASYMCipherConfiguration.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="29" lean-forward="false" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ASYMDecipherConfiguration.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="8" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/exe7/criptographicBlocks/AsymmetricDecipher.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -970,10 +935,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ASYMDecipherConfiguration.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="8" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ASYMCipherConfiguration.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="29" lean-forward="false" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/exe7/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="29" column="61" lean-forward="true" selection-start-line="29" selection-start-column="61" selection-end-line="29" selection-end-column="61" />
+        <state relative-caret-position="51">
+          <caret line="3" column="46" lean-forward="false" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
           <folding />
         </state>
       </provider>
