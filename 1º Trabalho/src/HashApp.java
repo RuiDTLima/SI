@@ -1,8 +1,4 @@
 import java.io.File;
-<<<<<<< HEAD
-import java.io.FileInputStream;
-=======
->>>>>>> d87604a7a510d6c813ec6e9946425efa98871cb7
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -29,14 +25,16 @@ public class HashApp {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        int iterations = file.length / 1024;
+/*        int iterations = file.length / 1024;
         int rest = file.length % 1024;
 
         for (int i = 0; i < iterations; i++) {
             sha.update(file, 1024 * i, 1024);
         }
         if (rest != 0)
-            sha.update(file, 1024 * iterations, rest);
+            sha.update(file, 1024 * iterations, rest);*/
+
+        sha.update(file);
 
         return sha.digest();
     }
