@@ -11,7 +11,7 @@ import static exe7.IO.loadConfiguration;
 public class AsymmetricCipher {
     private final HashMap<String, String> configuration;
     private Cipher cipher;
-    public static final String CONFIGURATION_FILE = "ASYMCipherConfiguration.txt", PRIMITIVE = "primitive", CERTIFICATE = "certificate";
+    public static final String CONFIGURATION_FILE = "ASYMCipherConfiguration.txt", PRIMITIVE = "primitive", CERTIFICATE = "certificate", TRUST_ANCHOR = "trustAnchor";
 
     public HashMap<String, String> getConfiguration() {
         return configuration;

@@ -17,7 +17,8 @@ import java.util.HashMap;
 public class AsymmetricDecipher {
     private final HashMap<String, String> configuration;
     private Cipher cipher;
-    public static final String CONFIGURATION_FILE = "ASYMDecipherConfiguration.txt", PRIMITIVE = "primitive", KEYPRIMITIVE = "keyPrimitive";
+    public static final String CONFIGURATION_FILE = "ASYMDecipherConfiguration.txt", PRIMITIVE = "primitive",
+                                KEYPRIMITIVE = "keyPrimitive", KEYSTORE = "keyStore";
 
     public HashMap<String, String> getConfiguration() {
         return configuration;
