@@ -19,6 +19,7 @@ public class App {
     private static final char[] PASSWORD = "changeit".toCharArray();
 
     public static void main(String[] args) {
+        long initialTime = System.currentTimeMillis();
         String fileName = args[0], operation = args[1];
         try {
             String[] components = fileName.split("[.]");
@@ -35,6 +36,8 @@ public class App {
             }
             else
                 System.out.println("Invalid Operation.\n Valid operations are \"cipher\" and \"decipher\"");
+
+            System.out.println(String.format("Time elapsed in millis: %d", System.currentTimeMillis() - initialTime));
         } catch (InvalidKeyException | CertPathValidatorException | CertificateException | NoSuchAlgorithmException
                 | KeyStoreException | InvalidAlgorithmParameterException | IllegalBlockSizeException
                 | UnrecoverableKeyException | IOException | BadPaddingException | NoSuchPaddingException e) {
@@ -42,6 +45,8 @@ public class App {
         } catch (CertPathBuilderException e) {
             System.out.println("Invalid trust anchor, configure a diferent one in ASYMCipherConfiguration.txt");
         }
+
+
     }
 
     private static void cipherMode(String fileName) throws IOException, IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, CertificateException, KeyStoreException, CertPathValidatorException, CertPathBuilderException {
@@ -83,7 +88,7 @@ public class App {
     }
 
     /**
-     *
+     * It's assumed the package only contains certificates
      * @param certificateFactory
      * @param leaf
      * @return
