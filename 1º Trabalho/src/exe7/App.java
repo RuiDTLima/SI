@@ -1,67 +1,61 @@
 package exe7;
 
-import exe7.criptographicBlocks.AsymmetricCipher;
-import exe7.criptographicBlocks.AsymmetricDecipher;
-import exe7.criptographicBlocks.SymmetricCipher;
-import exe7.criptographicBlocks.SymmetricDecipher;
+import exe7.criptographicBlocks.*;
 import javafx.util.Pair;
+
 import javax.crypto.*;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.security.*;
 import java.security.cert.*;
 import java.security.cert.Certificate;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 
 public class App {
-    private static String resultFile, metadataFile;
+
     private static final char[] PASSWORD = "changeit".toCharArray();
 
     public static void main(String[] args) {
-        long initialTime = System.currentTimeMillis();
         String fileName = args[0], operation = args[1];
+        String[] components = fileName.split("[.]");
+        String resultFile, metadataFile;
         try {
-            String[] components = fileName.split("[.]");
-
+            long startTime = System.currentTimeMillis();
             if(operation.equalsIgnoreCase("cipher")) {
                 resultFile = String.format("%sCiphered.%s", components[0], components[1]);
-                metadataFile = String.format("%sMetaData.%s", components[0], components[1]);
-                cipherMode(fileName);
-            }
-            else if(operation.equalsIgnoreCase("decipher")) {
+                metadataFile = String.format("%sMetaData.txt", components[0]);
+                cipher(fileName, resultFile, metadataFile);
+            } else if(operation.equalsIgnoreCase("decipher")) {
                 resultFile = String.format("%sDeciphered.%s", components[0], components[1]);
-                metadataFile = components[0].replace("Ciphered", "") + "Metadata." + components[1];
-                decipherMode(fileName);
+                metadataFile = String.format("%sMetadata.txt", components[0].replace("Ciphered", ""));
+                decipher(fileName, resultFile, metadataFile);
             }
-            else
+            else {
                 System.out.println("Invalid Operation.\n Valid operations are \"cipher\" and \"decipher\"");
-
-            System.out.println(String.format("Time elapsed in millis: %d", System.currentTimeMillis() - initialTime));
-        } catch (InvalidKeyException | CertPathValidatorException | CertificateException | NoSuchAlgorithmException
-                | KeyStoreException | InvalidAlgorithmParameterException | IllegalBlockSizeException
-                | UnrecoverableKeyException | IOException | BadPaddingException | NoSuchPaddingException e) {
+                return;
+            }
+            long endTime = System.currentTimeMillis();
+            System.out.println(String.format("Time elapsed in millis: %d", endTime - startTime));
+        } catch (InvalidKeyException | InvalidAlgorithmParameterException |
+                NoSuchAlgorithmException | KeyStoreException |
+                CertPathBuilderException | CertificateException |
+                UnrecoverableKeyException | IllegalBlockSizeException |
+                BadPaddingException | IOException | NoSuchPaddingException e) {
             e.printStackTrace();
-        } catch (CertPathBuilderException e) {
-            System.out.println("Invalid trust anchor, configure a diferent one in ASYMCipherConfiguration.txt");
         }
-
-
     }
 
-    private static void cipherMode(String fileName) throws IOException, IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, CertificateException, KeyStoreException, CertPathValidatorException, CertPathBuilderException {
+    private static void cipher(String fileName, String resultFile, String metadataFile) throws NoSuchPaddingException, NoSuchAlgorithmException, IOException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, CertificateException, CertPathBuilderException, InvalidAlgorithmParameterException, KeyStoreException {
         SymmetricCipher symCipher = new SymmetricCipher();
-        SecretKey secretKey = generateKey(symCipher.getConfiguration().get(SymmetricCipher.PRIMITIVE));
+        SecretKey secretKey = generateKey(symCipher.get(Block.PRIMITIVE));
         symCipher.init(secretKey);
-
         symCipher.execute(fileName, resultFile);
 
         AsymmetricCipher asymCipher = new AsymmetricCipher();
-
-        HashMap<String, String> asymCipherConfig = asymCipher.getConfiguration();
-
-        asymCipher.init(GetPublicKey(asymCipherConfig.get(AsymmetricCipher.CERTIFICATE), asymCipherConfig.get(AsymmetricCipher.TRUST_ANCHOR)));
-
+        PublicKey publicKey = GetPublicKey(asymCipher.get(AsymmetricCipher.CERTIFICATE), asymCipher.get(AsymmetricCipher.TRUST_ANCHOR));
+        asymCipher.init(publicKey);
         asymCipher.execute(secretKey, symCipher.getIV(), metadataFile);
     }
 
@@ -69,7 +63,7 @@ public class App {
         return KeyGenerator.getInstance(primitive).generateKey();
     }
 
-    private static PublicKey GetPublicKey(String certificate, String trustAnchorName) throws IOException, CertificateException, KeyStoreException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, CertPathBuilderException, CertPathValidatorException {
+    private static PublicKey GetPublicKey(String certificate, String trustAnchorName) throws CertificateException, IOException, KeyStoreException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, CertPathBuilderException {
         CertificateFactory cf = CertificateFactory.getInstance("X.509");
         X509Certificate leaf = (X509Certificate) loadCertificate(cf, certificate);
         KeyStore trustAnchor = loadTrustAnchor(trustAnchorName);
@@ -87,63 +81,46 @@ public class App {
         return leaf.getPublicKey();
     }
 
-    /**
-     * It's assumed the package only contains certificates
-     * @param certificateFactory
-     * @param leaf
-     * @return
-     * @throws CertificateException
-     * @throws IOException
-     */
-    private static Collection<Certificate> getIntermediateAndLeafCertificates(CertificateFactory certificateFactory, X509Certificate leaf) throws CertificateException, IOException {
+    private static Collection<Certificate> getIntermediateAndLeafCertificates(CertificateFactory certificateFactory, X509Certificate leaf) throws IOException, CertificateException {
         File folder = new File("cert.CAintermedia");
         File[] listOfFiles = folder.listFiles();
         ArrayList<Certificate> certificates = new ArrayList<>();
-
         certificates.add(leaf);
-        for (File listOfFile : listOfFiles)
-            certificates.add(loadCertificate(certificateFactory, listOfFile.getPath()));
-
+        for (File file : listOfFiles)
+            certificates.add(loadCertificate(certificateFactory, file.getPath()));
         return certificates;
     }
 
     private static Certificate loadCertificate(CertificateFactory certificateFactory, String certificateName ) throws IOException, CertificateException {
-        Certificate cert;
-        try(BufferedInputStream bis = new BufferedInputStream(new FileInputStream(certificateName))){
-            cert = certificateFactory.generateCertificate(bis);
-        }
-        return cert;
-    }
-
-    private static KeyStore loadTrustAnchor(String certificateName) throws KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException {
-        try(FileInputStream fis = new FileInputStream(certificateName)){
-            KeyStore trustAnchor1 = KeyStore.getInstance("jks");
-            trustAnchor1.load(fis, PASSWORD);
-            return trustAnchor1;
+        try(FileInputStream in = new FileInputStream(certificateName)){
+            return certificateFactory.generateCertificate(in);
         }
     }
 
-    private static void decipherMode(String fileName) throws IOException, IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, KeyStoreException, CertificateException, UnrecoverableKeyException {
+    private static KeyStore loadTrustAnchor(String certificateName) throws IOException, KeyStoreException, CertificateException, NoSuchAlgorithmException {
+        try(FileInputStream in = new FileInputStream(certificateName)){
+            KeyStore trustAnchor = KeyStore.getInstance("jks");
+            trustAnchor.load(in, PASSWORD);
+            return trustAnchor;
+        }
+    }
+
+    private static void decipher(String fileName, String resultFile, String metadataFile) throws NoSuchPaddingException, NoSuchAlgorithmException, IOException, CertificateException, KeyStoreException, UnrecoverableKeyException, InvalidKeyException, InvalidAlgorithmParameterException, BadPaddingException, IllegalBlockSizeException {
         AsymmetricDecipher asymDecipher = new AsymmetricDecipher();
-
-        HashMap<String, String> asymDecipherConfig = asymDecipher.getConfiguration();
-
-        PrivateKey key = getPrivateKey(asymDecipherConfig.get(AsymmetricDecipher.KEYSTORE));
-
+        PrivateKey key = getPrivateKey(asymDecipher.get(AsymmetricDecipher.KEYSTORE));
         asymDecipher.init(key);
         Pair<SecretKey, byte[]> pair = asymDecipher.execute(metadataFile);
 
         SymmetricDecipher symDecipher = new SymmetricDecipher();
-
         symDecipher.init(pair.getKey(), pair.getValue());
         symDecipher.execute(fileName, resultFile);
     }
 
-    private static PrivateKey getPrivateKey(String pfxFileName) throws KeyStoreException, IOException, CertificateException, NoSuchAlgorithmException, UnrecoverableKeyException {
-        KeyStore ks = KeyStore.getInstance("PKCS12");
-        FileInputStream fis = new java.io.FileInputStream(pfxFileName);
-        ks.load(fis, PASSWORD);
-        fis.close();
-        return (PrivateKey)ks.getKey("1", PASSWORD);
+    private static PrivateKey getPrivateKey(String pfxFileName) throws IOException, KeyStoreException, CertificateException, NoSuchAlgorithmException, UnrecoverableKeyException {
+        try(FileInputStream in = new FileInputStream(pfxFileName)) {
+            KeyStore ks = KeyStore.getInstance("PKCS12");
+            ks.load(in, PASSWORD);
+            return (PrivateKey) ks.getKey("1", PASSWORD);
+        }
     }
 }

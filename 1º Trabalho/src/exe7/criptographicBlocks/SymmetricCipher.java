@@ -1,19 +1,21 @@
 package exe7.criptographicBlocks;
 
-import javax.crypto.*;
+import javax.crypto.Cipher;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
 import java.io.IOException;
-import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
-public class SymmetricCipher extends SymmetricBlock{
-    public static final String CONFIGURATION_FILE = "SYMConfiguration.txt";
+public class SymmetricCipher extends SymmetricBlock {
+
+    private static final String CONFIGURATION_FILE = "SYMConfiguration.txt";
 
     public byte[] getIV(){
         return cipher.getIV();
     }
 
-    public SymmetricCipher() throws IOException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException {
+    public SymmetricCipher() throws NoSuchPaddingException, NoSuchAlgorithmException, IOException {
         super(CONFIGURATION_FILE);
     }
 

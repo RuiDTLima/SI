@@ -1,41 +1,30 @@
 package exe7.criptographicBlocks;
 
 import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
-import static exe7.IO.loadConfiguration;
 
-public class SymmetricBlock {
-    private final HashMap<String, String> configuration;
-    protected Cipher cipher;
-    public static final String PRIMITIVE = "primitive", OPERATIONMODE = "operationMode", PADDINGMODE = "paddingMode";
+public class SymmetricBlock extends Block {
 
-    public HashMap<String, String> getConfiguration() {
-        return configuration;
+    private static final String OPERATIONMODE = "operationMode";
+    private static final String PADDINGMODE = "paddingMode";
+
+    protected SymmetricBlock(String fileName) throws NoSuchPaddingException, NoSuchAlgorithmException, IOException {
+        super(fileName, OPERATIONMODE, PADDINGMODE);
     }
 
-    public SymmetricBlock(String fileName) throws IOException, NoSuchPaddingException, NoSuchAlgorithmException {
-        configuration = loadConfiguration(fileName);
-        cipher = Cipher.getInstance(configuration.get(PRIMITIVE) + "/" + configuration.get(OPERATIONMODE) + "/" + configuration.get(PADDINGMODE));
-    }
-
-    public void execute(String fileNameIn, String fileNameOut) throws BadPaddingException, IllegalBlockSizeException {
-        try (FileInputStream reader = new FileInputStream(fileNameIn);
-             FileOutputStream writer = new FileOutputStream(fileNameOut)){
+    public void execute(String fileNameIn, String fileNameOut) throws IOException, BadPaddingException, IllegalBlockSizeException {
+        try (FileInputStream in = new FileInputStream(fileNameIn);
+             FileOutputStream out = new FileOutputStream(fileNameOut)){
             byte[] buffer = new byte[1024];
             int nread;
-            while ((nread = reader.read(buffer)) != -1) {
-                writer.write(cipher.update(buffer, 0, nread));
-            }
-            writer.write(cipher.doFinal());
-        } catch (IOException e) {
-            e.printStackTrace();
+            while ((nread = in.read(buffer)) != -1)
+                out.write(cipher.update(buffer, 0, nread));
+            out.write(cipher.doFinal());
         }
     }
 }

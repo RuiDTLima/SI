@@ -1,38 +1,32 @@
 package exe7.criptographicBlocks;
 
 import javax.crypto.*;
-import java.io.*;
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
-import java.util.HashMap;
-import static exe7.IO.loadConfiguration;
 
-public class AsymmetricCipher {
-    private final HashMap<String, String> configuration;
-    private Cipher cipher;
-    public static final String CONFIGURATION_FILE = "ASYMCipherConfiguration.txt", PRIMITIVE = "primitive", CERTIFICATE = "certificate", TRUST_ANCHOR = "trustAnchor";
+public class AsymmetricCipher extends Block {
 
-    public HashMap<String, String> getConfiguration() {
-        return configuration;
-    }
+    private static final String CONFIGURATION_FILE = "ASYMCipherConfiguration.txt";
+    public static final String CERTIFICATE = "certificate";
+    public static final String TRUST_ANCHOR = "trustAnchor";
 
-    public AsymmetricCipher() throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IOException {
-        configuration = loadConfiguration(CONFIGURATION_FILE);
-        cipher = Cipher.getInstance(configuration.get(PRIMITIVE));
+    public AsymmetricCipher() throws NoSuchPaddingException, NoSuchAlgorithmException, IOException {
+        super(CONFIGURATION_FILE);
     }
 
     public void init(PublicKey key) throws InvalidKeyException {
         cipher.init(Cipher.WRAP_MODE, key);
     }
 
-    public void execute(SecretKey key, byte[] iv, String fileNameOut) throws BadPaddingException, IllegalBlockSizeException, InvalidKeyException, FileNotFoundException {
+    public void execute(SecretKey key, byte[] iv, String fileNameOut) throws IOException, InvalidKeyException, IllegalBlockSizeException {
         try (DataOutputStream writer = new DataOutputStream(new FileOutputStream(fileNameOut))){
             writer.writeInt(iv.length);
             writer.write(iv);
             writer.write(cipher.wrap(key));
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }
