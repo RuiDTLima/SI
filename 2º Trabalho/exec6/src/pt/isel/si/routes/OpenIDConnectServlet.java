@@ -7,11 +7,11 @@ import java.io.IOException;
 public class OpenIDConnectServlet extends RouteServlet {
     /* the client id of your web client */
     public static final String CLIENT_ID
-            = "310972940538-uurrpitkk6po2fnm3gsrn5h8hke2aok1.apps.googleusercontent.com";
+            = "451375149594-8ptgug89a53j6jeq1o29nkoimagi5s5v.apps.googleusercontent.com";
 
     /* the client secret of your web client */
     public static final String CLIENT_SECRET
-            = "beP5MVxzEUgEOWm7A1bA5mHO";
+            = "3SSsMvbiY6w0RTKO3mNhnnKk";
 
     public static final String REDIRECT_URI
             = "http://localhost:8080/google-callback"; /* the callback uri id of your web client */
@@ -25,11 +25,11 @@ public class OpenIDConnectServlet extends RouteServlet {
 
         resp.setStatus(302);
         resp.setHeader("Location",
-            // google's authorization endpoint
             "https://accounts.google.com/o/oauth2/v2/auth?"+
-            "scope=openid%20email%20profile&"+
+            "scope=openid%20email%20profile%20https://www.googleapis.com/auth/calendar&"+
             "redirect_uri="+REDIRECT_URI+"&"+
             "response_type=code&"+
+            "prompt=consent&"+
             "client_id="+CLIENT_ID);
     }
 }

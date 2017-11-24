@@ -6,12 +6,10 @@ import org.eclipse.jetty.servlet.ServletHolder;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pt.isel.si.routes.SearchServlet;
-import pt.isel.si.routes.MilestonesServlet;
-import pt.isel.si.routes.OpenIDConnectCallback;
-import pt.isel.si.routes.OpenIDConnectServlet;
+import pt.isel.si.routes.*;
 
 public class HttpServer {
+    // TODO meter botão de log out. desactivar botao
    /*
     * TCP port where to listen.
     * Standard port for HTTP is 80 but might be already in use
@@ -48,6 +46,14 @@ public class HttpServer {
        // handle presentation of results
        handler.addServletWithMapping(
                new ServletHolder(new MilestonesServlet()), "/milestones");
+
+       // to add event to calendar
+       handler.addServletWithMapping(
+               new ServletHolder(new CalendarServlet()), "/calendar");
+
+       // to logout
+       handler.addServletWithMapping(
+               new ServletHolder(new LogoutServlet()), "/logout");
 
        server.start();
        logger.info("Server started");

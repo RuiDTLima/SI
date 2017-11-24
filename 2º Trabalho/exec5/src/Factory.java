@@ -11,7 +11,6 @@ import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 
 public class Factory {
-
     private static final char[] PASSWORD = "changeit".toCharArray();
 
     public static TrustManager[] getTrustManagers(String certificateName) throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException {

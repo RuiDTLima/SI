@@ -1,13 +1,14 @@
 package pt.isel.si.routes;
 
 import com.google.gson.Gson;
-import pt.isel.si.entity.AccessInfo;
+import pt.isel.si.entities.GoogleAccessInfo;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import static pt.isel.si.routes.OpenIDConnectServlet.CLIENT_ID;
 
 public class OpenIDConnectCallback extends RouteServlet {
     private static final Gson GSON = new Gson();
@@ -28,7 +29,7 @@ public class OpenIDConnectCallback extends RouteServlet {
         PrintWriter output = new PrintWriter(
                 new OutputStreamWriter(connection.getOutputStream()));
         output.print("code=" + code + "&");
-        output.print("client_id=" + OpenIDConnectServlet.CLIENT_ID + "&");
+        output.print("client_id=" + CLIENT_ID + "&");
         output.print("client_secret=" + OpenIDConnectServlet.CLIENT_SECRET + "&");
         output.print("redirect_uri=" + OpenIDConnectServlet.REDIRECT_URI + "&");
         output.print("grant_type=authorization_code");
@@ -43,13 +44,10 @@ public class OpenIDConnectCallback extends RouteServlet {
             result += line;
         }
 
-        AccessInfo accessInfo = GSON.fromJson(result, AccessInfo.class);
+        GoogleAccessInfo googleAccessInfo = GSON.fromJson(result, GoogleAccessInfo.class);
 
-        Cookie tempCookie = new Cookie("access_token", RouteServlet.getHash(accessInfo.access_token.getBytes()).toString());    //
+        Cookie tempCookie = new Cookie("accessInfoNumber", String.valueOf(RouteServlet.addUserInfo(googleAccessInfo)));    //
         tempCookie.setMaxAge(SESSIONAGE);
-
-        RouteServlet.setCookie(tempCookie);
-
         resp.addCookie(tempCookie);
 
         /* exchange 'code' by 'id_token' and 'access_token' */
