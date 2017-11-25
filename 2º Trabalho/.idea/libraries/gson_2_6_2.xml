@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="gson-2.6.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/vendor/main/gson-2.6.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/vendor/main/javax.servlet-3.0.0.v201112011016.jar!/" />
+      <root url="jar://$PROJECT_DIR$/vendor/main/jetty-all-9.0.2.v20130417.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
