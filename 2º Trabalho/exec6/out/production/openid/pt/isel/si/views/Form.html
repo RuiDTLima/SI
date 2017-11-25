@@ -8,7 +8,7 @@
             <p></p><input type="submit" value="Log out"/>
         </form>
         <h1>Search Milestones</h1>
-        <form action="/milestones">
+        <form action="/milestones" id="form">
             <p>
                 Owner
                 <input type="text" name="owner" placeholder="Owner Name" required/>
@@ -17,8 +17,10 @@
                 Repository
                 <input type="text" name="repo" placeholder="Repository's Name" required/>
             </p>
-
-            <p></p><input type="submit" value="Search"/>
+           <p></p><input type="submit" value="Search"/>
+        </form>
+        <form action="/github-servlet">
+            <p></p><input type="submit" value="Authenticate"/>
         </form>
     </body>
 </html>

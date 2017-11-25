@@ -3,13 +3,11 @@ package pt.isel.si;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pt.isel.si.routes.*;
 
 public class HttpServer {
-    // TODO meter botão de log out. desactivar botao
    /*
     * TCP port where to listen.
     * Standard port for HTTP is 80 but might be already in use
@@ -54,6 +52,14 @@ public class HttpServer {
        // to logout
        handler.addServletWithMapping(
                new ServletHolder(new LogoutServlet()), "/logout");
+
+       // response from github
+       handler.addServletWithMapping(
+               new ServletHolder(new GithubServlet()), "/github-servlet");
+
+       // response from github
+       handler.addServletWithMapping(
+               new ServletHolder(new GithubCallback()), "/github-callback");
 
        server.start();
        logger.info("Server started");

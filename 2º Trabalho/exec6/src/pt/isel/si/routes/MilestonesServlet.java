@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import pt.isel.si.entities.Milestone;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -18,27 +19,24 @@ public class MilestonesServlet extends RouteServlet {
     private static final Gson GSON = new Gson();
     private static final String MILESTONE = load("./src/pt/isel/si/views/Milestone.html");
     private static final String MILESTONEROW = load("./src/pt/isel/si/views/MilestoneRow.html");
-    private final String URL = "https://api.github.com/repos/%s/%s/milestones";
+    private static final String URL = "https://api.github.com/repos/%s/%s/milestones?access_token=%s";
 
     @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        if(!validateCookieRedirect(req, resp)){
-            return;
-        }
+    public void execute(HttpServletRequest req, HttpServletResponse resp, Cookie cookie) throws IOException {
+        int number = Integer.parseInt(cookie.getValue());
 
-        System.out.println("--New request was received --");
-        System.out.println(req.getRequestURI());
-        System.out.println(req.getMethod());
-        System.out.println(req.getHeader("Accept"));
-
-        URL url = new URL(String.format(URL, req.getParameter("owner"), req.getParameter("repo")));
+        URL url = new URL(String.format(URL, req.getParameter("owner"), req.getParameter("repo"), githubUsersInfo.get(number).access_token));
 
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setDoOutput(true);
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 
-        int status = connection.getResponseCode();
+        if (connection.getResponseCode() == 404) {
+            resp.sendError(404, connection.getResponseMessage());
+            return;
+        }
+
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(resp.getOutputStream()));
         BufferedReader input = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 

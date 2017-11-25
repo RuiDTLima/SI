@@ -1,6 +1,6 @@
 package pt.isel.si.routes;
 
-import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedWriter;
@@ -14,11 +14,7 @@ public class SearchServlet extends RouteServlet {
     private static final String FILENAME = "./src/pt/isel/si/views/Form.html";
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if(!validateCookieRedirect(req, resp)){
-            return;
-        }
-
+    public void execute(HttpServletRequest req, HttpServletResponse resp, Cookie cookie) throws IOException {
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(resp.getOutputStream()));
         Path path = Paths.get(FILENAME);
         String text = new String(Files.readAllBytes(path));
