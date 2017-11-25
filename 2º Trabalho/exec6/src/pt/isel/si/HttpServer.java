@@ -24,7 +24,7 @@ public class HttpServer {
        ServletHandler handler = new ServletHandler();
        server.setHandler(handler);
 
-       handler.addServletWithMapping(new ServletHolder(new HomepageServlet()), "/");
+       handler.addServletWithMapping(new ServletHolder(new IndexServlet()), "/index");
 
        // make authentication request
        handler.addServletWithMapping(new ServletHolder(new GoogleServlet()), "/google-openid");

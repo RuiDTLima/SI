@@ -30,7 +30,7 @@ public abstract class RouteServlet extends HttpServlet {
         }
     }
 
-    protected static int addGoogleInfo(AccessInfo googleAccessInfo) {
+    public static int addGoogleInfo(AccessInfo googleAccessInfo) {
         Random rnd = new Random();
         int number = rnd.nextInt();
         googleUsersInfo.put(number, googleAccessInfo);

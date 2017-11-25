@@ -12,9 +12,9 @@ public class SearchServlet extends RouteServlet {
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp, Cookie cookie) throws IOException {
-        BufferedWriter out = new BufferedWriter(new OutputStreamWriter(resp.getOutputStream()));
-        out.write(FORM);
-        out.close();
+        try (BufferedWriter out = new BufferedWriter(new OutputStreamWriter(resp.getOutputStream()))) {
+            out.write(FORM);
+        }
         resp.setStatus(200);
     }
 }

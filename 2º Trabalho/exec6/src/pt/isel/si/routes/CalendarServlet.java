@@ -3,9 +3,7 @@ package pt.isel.si.routes;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -19,7 +17,6 @@ public class CalendarServlet extends RouteServlet {
         URL url = new URL(String.format(URL, googleUsersInfo.get(number).access_token));
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setDoOutput(true);
-        connection.setDoInput(true);
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type", "application/json");
 
@@ -30,6 +27,10 @@ public class CalendarServlet extends RouteServlet {
             out.write(String.format(BODY, date, date, title));
         }
 
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+            while ((in.readLine() != null))
+                ;
+        }
         resp.setStatus(303);
         resp.setHeader("Location", req.getHeader("Referer"));
     }
