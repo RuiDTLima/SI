@@ -7,6 +7,8 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 
+import static pt.isel.si.Utils.load;
+
 public class SearchServlet extends RouteServlet {
     private static final String FORM = load("./src/pt/isel/si/views/Form.html");
 

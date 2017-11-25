@@ -1,25 +1,36 @@
 <html>
     <head>
         <title>Search Repo Milestones</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     </head>
     <body>
-        <form action="/logout">
-            <p><input type="submit" value="Log out"/></p>
-        </form>
-        <h1>Search Milestones</h1>
-        <form action="/milestones" id="form">
-            <p>
-                Owner
-                <input type="text" name="owner" placeholder="Owner Name" required/>
-            </p>
-            <p>
-                Repository
-                <input type="text" name="repo" placeholder="Repository's Name" required/>
-            </p>
-           <p><input type="submit" value="Search"/></p>
-        </form>
-        <form action="/github-servlet">
-            <p><input type="submit" value="Authorize"/></p>
-        </form>
+        <div style="float:right;" class="col-md-1">
+            <form action="/logout">
+                <div class="form-group">
+                    <input type="submit" value="Log out" class="form-control"/>
+                </div>
+            </form>
+        </div>
+        <div class="container">
+            <h1>Search Milestones</h1>
+            <form action="/milestones">
+                <div class="form-group">
+                    <label>Owner:</label>
+                    <input type="text" name="owner" placeholder="Owner Name" class="form-control" required/>
+                </div>
+                <div class="form-group">
+                    <label>Repository:</label>
+                    <input type="text" name="repo" placeholder="Repository's Name" class="form-control" required/>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Search" class="form-control"/>
+                </div>
+            </form>
+            <form action="/github-servlet" onSubmit="alert('Authorization processing...');">
+                <div class="form-group">
+                    <input type="submit" value="Authorize" class="form-control"/>
+                </div>
+            </form>
+        </div>
     </body>
 </html>

@@ -13,6 +13,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+import static pt.isel.si.Utils.load;
+
 public class MilestonesServlet extends RouteServlet {
     private static final Gson GSON = new Gson();
     private static final String MILESTONE = load("./src/pt/isel/si/views/Milestone.html");

@@ -4,8 +4,8 @@
     <td><a href="%s">%s</a></td>
     <td>%s</td>
     <td>
-        <form method="POST" action="/calendar" onSubmit="alert('Event added.');">
-            <input type="submit" value="Add">
+        <form method="POST" action="/calendar" onSubmit="alert('Event is being added...');">
+            <input type="submit" value="Add" class="form-control">
             <input type="hidden" name="due_on" value="%s">
             <input type="hidden" name="title" value="%s">
         </form>

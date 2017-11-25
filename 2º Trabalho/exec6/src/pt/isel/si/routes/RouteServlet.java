@@ -8,27 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Optional;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 public abstract class RouteServlet extends HttpServlet {
     protected static HashMap<Integer, AccessInfo> googleUsersInfo = new HashMap<>();
     protected static HashMap<Integer, AccessInfo> githubUsersInfo = new HashMap<>();
-
-    protected static String load(String path) {
-        try {
-            return Files.readAllLines(Paths.get(path))
-                    .stream()
-                    .collect(Collectors.joining());
-        } catch (IOException e){
-            throw new RuntimeException(e);
-        }
-    }
 
     public static int addGoogleInfo(AccessInfo googleAccessInfo) {
         Random rnd = new Random();
@@ -42,7 +29,7 @@ public abstract class RouteServlet extends HttpServlet {
                 .filter((c) -> c.getName().equals("accessInfoNumber"))
                 .findFirst();
 
-        if (RouteServlet.googleUsersInfo.isEmpty() || !cookie.isPresent() || !googleUsersInfo.containsKey(Integer.valueOf(cookie.get().getValue()))){
+        if (googleUsersInfo.isEmpty() || !cookie.isPresent() || !googleUsersInfo.containsKey(Integer.valueOf(cookie.get().getValue()))){
             resp.setStatus(302);
             resp.setHeader("Location", "http://localhost:8080/index");
             return;
