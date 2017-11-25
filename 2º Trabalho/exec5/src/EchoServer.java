@@ -26,10 +26,9 @@ public class EchoServer {
                         String body = new String(buffer).trim();
                         out.println("HTTP/1.1 200 OK");
                         out.println("Content-type: text/plain");
-                        out.println("Content-length: " + body.length() * 2);
+                        out.println("Content-length: " + body.length());
                         out.println();
                         out.println(body);
-                        out.println();
                     }
                 } catch (IOException e) {
                     System.out.println("Exception caught when trying to listen on port " + port + " or listening for a connection");

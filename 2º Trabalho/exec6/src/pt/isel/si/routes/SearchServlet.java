@@ -6,20 +6,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class SearchServlet extends RouteServlet {
-    private static final String FILENAME = "./src/pt/isel/si/views/Form.html";
+    private static final String FORM = load("./src/pt/isel/si/views/Form.html");
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp, Cookie cookie) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(resp.getOutputStream()));
-        Path path = Paths.get(FILENAME);
-        String text = new String(Files.readAllBytes(path));
-        writer.write(text);
-        writer.close();
+        BufferedWriter out = new BufferedWriter(new OutputStreamWriter(resp.getOutputStream()));
+        out.write(FORM);
+        out.close();
         resp.setStatus(200);
     }
 }

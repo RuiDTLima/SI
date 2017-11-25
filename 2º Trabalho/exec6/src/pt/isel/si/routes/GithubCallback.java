@@ -22,36 +22,31 @@ public class GithubCallback extends RouteServlet {
             resp.setHeader("Location", "http://localhost:8080/search");
             return;
         }
-        String code = req.getParameter("code");
 
         URL url = new URL("https://github.com/login/oauth/access_token");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
         connection.setDoOutput(true);
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
         connection.setRequestProperty("Accept", "application/json");
 
-        PrintWriter output = new PrintWriter(
-                new OutputStreamWriter(connection.getOutputStream()));
-        output.print("code=" + code + "&");
-        output.print("client_id=" + GithubServlet.CLIENT_ID + "&");
-        output.print("client_secret=" + GithubServlet.CLIENT_SECRET + "&");
-        output.print("redirect_uri=" + GithubServlet.REDIRECT_URI + "&");
-        output.print("state=" + state);
-        output.flush();
-
-        BufferedReader input = new BufferedReader(
-                new InputStreamReader(connection.getInputStream()));
-        String line;StringBuilder result = new StringBuilder();
-
-        while ((line = input.readLine()) != null) {
-            result.append(line);
+        try (BufferedWriter out = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream()))) {
+            out.write("code=" + req.getParameter("code") + "&");
+            out.write("client_id=" + GithubServlet.CLIENT_ID + "&");
+            out.write("client_secret=" + GithubServlet.CLIENT_SECRET + "&");
+            out.write("redirect_uri=" + GithubServlet.REDIRECT_URI + "&");
+            out.write("state=" + state);
         }
 
-        AccessInfo githubAccessInfo = GSON.fromJson(result.toString(), AccessInfo.class);
+        StringBuilder result;
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+            result = new StringBuilder();
+            String line;
+            while ((line = in.readLine()) != null)
+                result.append(line);
+        }
 
-        githubUsersInfo.put(Integer.parseInt(state), githubAccessInfo);
+        githubUsersInfo.put(Integer.parseInt(state), GSON.fromJson(result.toString(), AccessInfo.class));
 
         resp.setStatus(302);
         resp.setHeader("Location", "http://localhost:8080/search");

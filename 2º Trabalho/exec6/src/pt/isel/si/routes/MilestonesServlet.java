@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
@@ -19,13 +17,14 @@ public class MilestonesServlet extends RouteServlet {
     private static final Gson GSON = new Gson();
     private static final String MILESTONE = load("./src/pt/isel/si/views/Milestone.html");
     private static final String MILESTONEROW = load("./src/pt/isel/si/views/MilestoneRow.html");
-    private static final String URL = "https://api.github.com/repos/%s/%s/milestones?access_token=%s";
+    private static final String URL = "https://api.github.com/repos/%s/%s/milestones%s";
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp, Cookie cookie) throws IOException {
         int number = Integer.parseInt(cookie.getValue());
 
-        URL url = new URL(String.format(URL, req.getParameter("owner"), req.getParameter("repo"), githubUsersInfo.get(number).access_token));
+        URL url = new URL(String.format(URL, req.getParameter("owner"), req.getParameter("repo"),
+                githubUsersInfo.containsKey(number) ? ("?access_token=" + githubUsersInfo.get(number).access_token) : ""));
 
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setDoOutput(true);
@@ -37,14 +36,13 @@ public class MilestonesServlet extends RouteServlet {
             return;
         }
 
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(resp.getOutputStream()));
-        BufferedReader input = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-
-        String line;
-        StringBuilder result = new StringBuilder();
-
-        while ((line = input.readLine()) != null)
-            result.append(line);
+        StringBuilder result;
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+            result = new StringBuilder();
+            String line;
+            while ((line = in.readLine()) != null)
+                result.append(line);
+        }
 
         ArrayList<Milestone> milestones = GSON.fromJson(result.toString(), new TypeToken<ArrayList<Milestone>>(){}.getType());
 
@@ -52,25 +50,15 @@ public class MilestonesServlet extends RouteServlet {
                 milestone.title,
                 milestone.description,
                 milestone.html_url,
+                milestone.html_url,
                 milestone.due_on.split("T")[0],
                 milestone.due_on.split("T")[0],
                 milestone.title))
                 .collect(Collectors.joining());
 
-        writer.write(String.format(MILESTONE, html));
-
-        writer.close();
-        input.close();
-        resp.setStatus(200);
-    }
-
-    private static String load(String path){
-        try {
-            return Files.readAllLines(Paths.get(path))
-                    .stream()
-                    .collect(Collectors.joining());
-        }catch (IOException e){
-            throw new RuntimeException(e);
+        try (BufferedWriter out = new BufferedWriter(new OutputStreamWriter(resp.getOutputStream()))) {
+            out.write(String.format(MILESTONE, html));
         }
+        resp.setStatus(200);
     }
 }

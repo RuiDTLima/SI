@@ -3,7 +3,6 @@ package pt.isel.si.routes;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 public class GithubServlet extends RouteServlet {
     public static final String CLIENT_ID = "c24702b46d74c97b7d5e";
@@ -11,7 +10,7 @@ public class GithubServlet extends RouteServlet {
     public static final String REDIRECT_URI = "http://localhost:8080/github-callback";
 
     @Override
-    public void execute(HttpServletRequest req, HttpServletResponse resp, Cookie cookie) throws IOException {
+    public void execute(HttpServletRequest req, HttpServletResponse resp, Cookie cookie) {
         resp.setStatus(302);
         resp.setHeader("Location", "https://github.com/login/oauth/authorize?" +
                 "client_id=" + CLIENT_ID +

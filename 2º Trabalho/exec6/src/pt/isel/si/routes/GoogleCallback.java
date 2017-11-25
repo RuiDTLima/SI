@@ -10,9 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import static pt.isel.si.routes.OpenIDConnectServlet.CLIENT_ID;
 
-public class OpenIDConnectCallback extends HttpServlet {
+public class GoogleCallback extends HttpServlet {
     private static final Gson GSON = new Gson();
     private static final int SESSIONAGE = -1;
 
@@ -26,32 +25,27 @@ public class OpenIDConnectCallback extends HttpServlet {
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 
-        PrintWriter output = new PrintWriter(
-                new OutputStreamWriter(connection.getOutputStream()));
-        output.print("code=" + code + "&");
-        output.print("client_id=" + CLIENT_ID + "&");
-        output.print("client_secret=" + OpenIDConnectServlet.CLIENT_SECRET + "&");
-        output.print("redirect_uri=" + OpenIDConnectServlet.REDIRECT_URI + "&");
-        output.print("grant_type=authorization_code");
-        output.flush();
+        try (BufferedWriter out = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream()))) {
+            out.write("code=" + code + "&");
+            out.write("client_id=" + GoogleServlet.CLIENT_ID + "&");
+            out.write("client_secret=" + GoogleServlet.CLIENT_SECRET + "&");
+            out.write("redirect_uri=" + GoogleServlet.REDIRECT_URI + "&");
+            out.write("grant_type=authorization_code");
+        }
 
-        BufferedReader input = new BufferedReader(
-                new InputStreamReader(connection.getInputStream()));
-        String line;StringBuilder result = new StringBuilder();
-
-        while ((line = input.readLine()) != null) {
-            result.append(line);
+        StringBuilder result;
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+            result = new StringBuilder();
+            String line;
+            while ((line = in.readLine()) != null)
+                result.append(line);
         }
 
         AccessInfo googleAccessInfo = GSON.fromJson(result.toString(), AccessInfo.class);
 
-        Cookie tempCookie = new Cookie("accessInfoNumber", String.valueOf(RouteServlet.addGoogleInfo(googleAccessInfo)));
-        tempCookie.setMaxAge(SESSIONAGE);
-        resp.addCookie(tempCookie);
-
-        output.close();
-        input.close();
-
+        Cookie cookie = new Cookie("accessInfoNumber", String.valueOf(RouteServlet.addGoogleInfo(googleAccessInfo)));
+        cookie.setMaxAge(SESSIONAGE);
+        resp.addCookie(cookie);
         resp.setStatus(302);
         resp.setHeader("Location", "http://localhost:8080/search");
     }

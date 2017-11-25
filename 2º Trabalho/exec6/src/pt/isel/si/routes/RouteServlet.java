@@ -8,23 +8,36 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Optional;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public abstract class RouteServlet extends HttpServlet {
-    public static HashMap<Integer, AccessInfo> googleUsersInfo = new HashMap<>();
-    public static HashMap<Integer, AccessInfo> githubUsersInfo = new HashMap<>();
+    protected static HashMap<Integer, AccessInfo> googleUsersInfo = new HashMap<>();
+    protected static HashMap<Integer, AccessInfo> githubUsersInfo = new HashMap<>();
 
-    public static int addGoogleInfo(AccessInfo googleAccessInfo) {
+    protected static String load(String path) {
+        try {
+            return Files.readAllLines(Paths.get(path))
+                    .stream()
+                    .collect(Collectors.joining());
+        } catch (IOException e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected static int addGoogleInfo(AccessInfo googleAccessInfo) {
         Random rnd = new Random();
         int number = rnd.nextInt();
         googleUsersInfo.put(number, googleAccessInfo);
         return number;
     }
 
-    public void doExecute(HttpServletRequest req, HttpServletResponse resp){
+    private void doExecute(HttpServletRequest req, HttpServletResponse resp){
         Optional<Cookie> cookie = Arrays.stream(req.getCookies())
                 .filter((c) -> c.getName().equals("accessInfoNumber"))
                 .findFirst();
@@ -43,14 +56,14 @@ public abstract class RouteServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
         doExecute(req, resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
         doExecute(req, resp);
     }
 
-    public abstract void execute(HttpServletRequest req, HttpServletResponse resp, Cookie cookie) throws IOException;
+    protected abstract void execute(HttpServletRequest req, HttpServletResponse resp, Cookie cookie) throws IOException;
 }

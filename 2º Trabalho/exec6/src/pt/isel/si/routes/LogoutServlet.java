@@ -10,8 +10,8 @@ public class LogoutServlet extends RouteServlet {
     public void execute(HttpServletRequest req, HttpServletResponse resp, Cookie cookie) throws IOException {
         int number = Integer.parseInt(cookie.getValue());
 
-        RouteServlet.googleUsersInfo.remove(number);
-        RouteServlet.githubUsersInfo.remove(number);
+        googleUsersInfo.remove(number);
+        githubUsersInfo.remove(number);
 
         resp.setStatus(302);
         resp.setHeader("Location", "http://localhost:8080/index");
